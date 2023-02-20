@@ -1,6 +1,7 @@
 const displayValorAnterior = document.getElementById('valorAnterior');
 const displayValorActual = document.getElementById('valorActual');
 const botonesNumeros = document.querySelectorAll('.numero');
+const botonesNumerRari = document.querySelector('.numero');
 const botonesOperadores = document.querySelectorAll('.operador');
 
 
@@ -9,25 +10,21 @@ valorActual = []
 valorAnterior = []
 valor1 = []
 valor2 = []
-tipoOperacion = undefined;
-signos = {
-    suma: '+',
-    dividir: '%',
-    multiplicar: '*',
-    restar: '-', 
-}
-
-
-function formatearDisplay(){
-    displayValorActual.innerHTML = '';
-    displayValorAnterior.innerHTML = valorAnterior;
-}
-
 function valoresCalc(e){
-    if(isNaN(valor2)){
-        displayValorActual.innerHTML = '';
+    valorAnterior = valorActual;
+    valorActual = [];
+
+    if(isNaN(valor2) || isNaN(valor2)){
+
+    }else if(valor2 == 0){
+        displayValorAnterior.innerHTML = valorActual
+        displayValorActual.innerHTML = ''
+
     }else if(valor2 !== '' && valor2 !== ''){
-        valorAnterior = Math.round(e)
+        valorActual = e
+        valorAnterior = []
+        valor2 = []
+        displayValorActual.innerHTML = valorActual
 
     }
 }
@@ -35,12 +32,10 @@ function valoresCalc(e){
 function botones(){
     botonesNumeros.forEach(boton => {
         boton.addEventListener('click', () =>{
-            valorActual = valorActual + parseInt(boton.innerHTML);
+            valorActual = valorActual + boton.innerHTML;
             displayValorActual.innerHTML = valorActual
-            valor1 = parseInt(valorActual);
-            valor2 = parseInt(valorAnterior);
-            console.log(`el valor actual es ${valorActual} y el anterior es ${valorAnterior}`)
-            
+            valor1 = parseFloat(valorActual);
+            valor2 = parseFloat(valorAnterior);
         })
     })
 }
@@ -48,36 +43,56 @@ function botones(){
 
 botonesOperadores.forEach(boton =>{
     boton.addEventListener('click', () =>{
-        valorAnterior = valorActual;
-        valorActual = [];
 
         if(boton.innerHTML == '+'){
-    
-            // calculadoraSumar();
             valoresCalc(sumar(valor1,valor2));
-            
+
         }else if(boton.innerHTML == '-'){
-            // calculadoraRestar();
             valoresCalc(restar(valor1,valor2))
 
 
         }else if(boton.innerHTML == '*'){
-            // calculadoraMultiplicar();
             valoresCalc(multiplicar(valor1,valor2))
 
 
         }else if(boton.innerHTML == '%'){
-            // calculadoraDividir();
             valoresCalc(dividir(valor1,valor2))
-
         }
         displayValorAnterior.innerHTML = valorAnterior;
     })
 })
+
+// Funciones para borrar
+function formatearDisplay(){
+    displayValorActual.innerHTML = '';
+    displayValorAnterior.innerHTML = '';
+}
+
+function borrarTodo(){
+    valorActual = []
+    valorAnterior = []
+    valor1 = []
+    valor2 = []
+    formatearDisplay();
+}
+function borrar(){
+
+    let botonRari = botonesNumerRari.innerHTML
+    // botonRari.addEventListener('click' , () =>{})
+    if(valorActual.length >= 1){
+        let value = document.querySelector('#valorActual').innerHTML;
+        value = value.substring(0, value.length - 1) 
+        valorActual = value
+        console.log(`${botonRari} aaa`)
+
+        console.log(`${value} asdasd`)
+    }else{
+        borrarTodo()
+    }
+    function filtradoNumero(e){
+        var soloEnteros
+    }
+
+}
+
 botones()
-
-
-
-// console.log(signos(displayValorActual,displayValorAnterior));
-console.log(displayValorAnterior)
-console.log(sumar(displayValorActual, displayValorAnterior))
