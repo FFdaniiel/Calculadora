@@ -1,0 +1,89 @@
+:root{
+    --green-1 : #D7FBE8;
+    --green-2 : #9DF3C4;
+    --green-3 : #1FAB89;
+    --green-4 : #006f54;
+    --display : #363636;
+}
+
+/* Extras */
+html {
+    font-size: 62.5%; /* 1 rem = 10px */    
+}
+
+body{
+    background-color: var(--green-3);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background-color: var(--green-3);
+}
+button:active{
+    background-color: var(--green-4);
+}
+button:focus{
+    outline: none;
+}
+/* Fondo */
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+/* Formato de la calculadora */
+.calculadora{
+    display: grid;
+    grid-template-columns: repeat(4,  7.5rem);
+    grid-template-rows: 18rem repeat(5, 7.5rem) ;
+    background-color: var(--green-4);
+    padding: 1.3rem;
+    border-radius: 2rem;
+    box-shadow: 1.5rem 1rem 0 .5rem #00000033;
+    color: var(--green-1);
+    font-size: 2.5em;
+
+}
+
+/* Display */
+
+.display{
+    grid-column: 1 / -1;
+    padding: 1.6rem;
+    display: flex;
+    margin: 1rem 1rem 2rem;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: var(--display);
+    text-align: right;
+    border-radius: 1rem;
+    justify-content: space-between;
+    word-break: break-all;
+    box-shadow: 0 0 .5rem .7rem #00000033;
+}
+
+.valorActual{
+    font-size: 3.5rem;
+}
+.valorAnterior{
+    font-size: 2.7rem;
+}
+
+/* numeros y operadores */
+.colum-2{
+    grid-column: span 2;
+}
+
+.numero{
+
+}
+.operador{
+
+}
+
+.numero, .colum-2,.operador{
+    margin: .2rem;
+}
