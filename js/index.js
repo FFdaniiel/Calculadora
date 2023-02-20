@@ -3,23 +3,7 @@ const displayValorActual = document.getElementById('valorActual');
 const botonesNumeros = document.querySelectorAll('.numero');
 const botonesOperadores = document.querySelectorAll('.operador');
 
-// funciones matematicas
 
-function sumar(num1, num2){
-        return  num1 + num2
-}
-function restar(num1, num2){
-    return  num1 - num2
-
-}
-function multiplicar(num1, num2){
-    return  num1 * num2
-
-}
-function dividir(num1, num2){
-    return  num1 / num2
-
-}
 // Valores
 valorActual = []
 valorAnterior = []
@@ -33,32 +17,67 @@ signos = {
     restar: '-', 
 }
 
+
 function formatearDisplay(){
     displayValorActual.innerHTML = '';
     displayValorAnterior.innerHTML = valorAnterior;
 }
 
-botonesNumeros.forEach(boton => {
-    boton.addEventListener('click', () =>{
-        valorActual = valorActual + parseInt(boton.innerHTML);
-        displayValorActual.innerHTML = valorActual
-        valor1 = parseInt(valorActual);
-        valor2 = parseInt(valorAnterior);
-        console.log(`el valor actual es ${valorActual} y el anterior es ${valorAnterior}`)
+function valoresCalc(e){
+    if(isNaN(valor2)){
+        displayValorActual.innerHTML = '';
+    }else if(valor2 !== '' && valor2 !== ''){
+        valorAnterior = Math.round(e)
+
+    }
+}
+
+function botones(){
+    botonesNumeros.forEach(boton => {
+        boton.addEventListener('click', () =>{
+            valorActual = valorActual + parseInt(boton.innerHTML);
+            displayValorActual.innerHTML = valorActual
+            valor1 = parseInt(valorActual);
+            valor2 = parseInt(valorAnterior);
+            console.log(`el valor actual es ${valorActual} y el anterior es ${valorAnterior}`)
+            
+        })
     })
-})
+}
+
 
 botonesOperadores.forEach(boton =>{
     boton.addEventListener('click', () =>{
         valorAnterior = valorActual;
         valorActual = [];
-        formatearDisplay();
+
+        if(boton.innerHTML == '+'){
+    
+            // calculadoraSumar();
+            valoresCalc(sumar(valor1,valor2));
+            
+        }else if(boton.innerHTML == '-'){
+            // calculadoraRestar();
+            valoresCalc(restar(valor1,valor2))
+
+
+        }else if(boton.innerHTML == '*'){
+            // calculadoraMultiplicar();
+            valoresCalc(multiplicar(valor1,valor2))
+
+
+        }else if(boton.innerHTML == '%'){
+            // calculadoraDividir();
+            valoresCalc(dividir(valor1,valor2))
+
+        }
+        displayValorAnterior.innerHTML = valorAnterior;
     })
 })
+botones()
 
 
 
 // console.log(signos(displayValorActual,displayValorAnterior));
 console.log(displayValorAnterior)
-console.log(sumar(2,2))
 console.log(sumar(displayValorActual, displayValorAnterior))
