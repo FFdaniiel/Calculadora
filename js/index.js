@@ -11,16 +11,14 @@ valorAnterior = []
 valor1 = 0
 valor2 = 0
 
-function valoresCalc(e){
+function valoresCalc(operador,e){
     valorAnterior = valorActual;
     valorActual = [];
     if(isNaN(valor2)){
         // Esto lo coloque para que omita estos valores vacios o no ejecuta
-        displayValorActual.innerHTML = ''
+        displayValorActual.innerHTML = operador
     }else if(valor2 == 0){
         displayValorActual.innerHTML = ''
-        displayValorAnterior.innerHTML = valorActual
-
     }
     if(displayValorActual.innerHTML !== '' && displayValorAnterior.innerHTML !== ''){
         valorActual = e
@@ -49,18 +47,18 @@ botonesOperadores.forEach(boton =>{
     boton.addEventListener('click', () =>{
 
         if(boton.innerHTML == '+'){
-            valoresCalc(sumar(valor1,valor2));
+            valoresCalc('+',sumar(valor1,valor2));
 
         }else if(boton.innerHTML == '-'){
-            valoresCalc(restar(valor1,valor2))
+            valoresCalc('-',restar(valor1,valor2))
 
 
         }else if(boton.innerHTML == '*'){
-            valoresCalc(multiplicar(valor1,valor2))
+            valoresCalc('*',multiplicar(valor1,valor2))
 
 
         }else if(boton.innerHTML == '%'){
-            valoresCalc(dividir(valor1,valor2))
+            valoresCalc('/',dividir(valor1,valor2))
         }
         displayValorAnterior.innerHTML = valorAnterior;
     })
