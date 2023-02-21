@@ -13,6 +13,8 @@ html {
 
 body{
     background-color: var(--green-3);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
 }
 
 button {
@@ -86,4 +88,13 @@ button:focus{
 
 .numero, .colum-2,.operador, .numeroEsp{
     margin: .2rem;
+}
+.hora{
+    position: absolute;
+    align-self: flex-start;
+    text-align: start;
+    width: 150px;
+    height: 30px; 
+    padding: 5px 10px; 
+    font-size: 1.5rem;
 }
