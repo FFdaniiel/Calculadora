@@ -16,9 +16,10 @@ function valoresCalc(e){
     valorActual = [];
     if(isNaN(valor2)){
         // Esto lo coloque para que omita estos valores vacios o no ejecuta
+        displayValorActual.innerHTML = ''
     }else if(valor2 == 0){
+        displayValorActual.innerHTML = ''
         displayValorAnterior.innerHTML = valorActual
-        displayValorActual.innerHTML = valorActual
 
     }
     if(displayValorActual.innerHTML !== '' && displayValorAnterior.innerHTML !== ''){
