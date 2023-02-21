@@ -59,6 +59,11 @@ botonesOperadores.forEach(boton =>{
 
         }else if(boton.innerHTML == '%'){
             valoresCalc('/',dividir(valor1,valor2))
+
+        }else if(boton.innerHTML == '='){
+            displayValorActual.innerHTML = 'A'
+            valorActual = []
+            valorAnterior = []
         }
         displayValorAnterior.innerHTML = valorAnterior;
     })
@@ -88,17 +93,5 @@ function borrar(){
     displayValorActual.innerHTML = valorActual
 
 }
-function horas(){
-    datos = new Date();
-    hours = datos.getHours();
-    minutos = datos.getMinutes();
-    segundos = datos.getSeconds();
 
-    if (hours < 10 ) horas = 0 + horas;
-    if (minutos < 10 ) horas = 0 + horas;
-    if (segundos < 10 ) horas = 0 + horas;
-
-    $('#hora').text(hours+ ':' +minutos+ ':' + segundos)
-    setTimeout("showTime()", 1000);
-}
 botones()

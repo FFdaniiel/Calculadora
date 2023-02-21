@@ -5,17 +5,14 @@ function horaActual(){
     segundos = fecha.getSeconds(); // segundo actual
 
     if (hours < 10 ){
-        hours = 0 + hours;
+        hours = '0' + hours;
     } 
     if (minutos < 10 ){
-        minutos = 0 + minutos;
-    } 
-    if (segundos < 10 ){
-        segundos = 0 + segundos;
+        minutos = '0' + minutos ;
     }
 
     //vizualizar
-    miReloj = `${hours}:${minutos}:${segundos}`;
+    miReloj = `${hours}:${minutos}`;
     return miReloj;
 }
 
