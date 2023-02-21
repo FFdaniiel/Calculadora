@@ -8,26 +8,29 @@ const botonesOperadores = document.querySelectorAll('.operador');
 // Valores
 valorActual = []
 valorAnterior = []
-valor1 = []
-valor2 = []
+valor1 = 0
+valor2 = 0
+
 function valoresCalc(e){
     valorAnterior = valorActual;
     valorActual = [];
-
-    if(isNaN(valor2) || isNaN(valor2)){
-
+    if(isNaN(valor2)){
+        // Esto lo coloque para que omita estos valores vacios o no ejecuta
     }else if(valor2 == 0){
         displayValorAnterior.innerHTML = valorActual
-        displayValorActual.innerHTML = ''
-
-    }else if(valor2 !== '' && valor2 !== ''){
-        valorActual = e
-        valorAnterior = []
-        valor2 = []
         displayValorActual.innerHTML = valorActual
 
     }
+    if(displayValorActual.innerHTML !== '' && displayValorAnterior.innerHTML !== ''){
+        valorActual = e
+        valorAnterior = []
+        valor2 = 0
+        displayValorActual.innerHTML = valorActual
+    }
+  
+    
 }
+
 
 function botones(){
     botonesNumeros.forEach(boton => {
@@ -76,22 +79,14 @@ function borrarTodo(){
     formatearDisplay();
 }
 function borrar(){
-
-    let botonRari = botonesNumerRari.innerHTML
-    // botonRari.addEventListener('click' , () =>{})
-    if(valorActual.length >= 1){
+    if(valorActual.length >= 0){
         let value = document.querySelector('#valorActual').innerHTML;
         value = value.substring(0, value.length - 1) 
         valorActual = value
-        console.log(`${botonRari} aaa`)
-
-        console.log(`${value} asdasd`)
-    }else{
-        borrarTodo()
+    }else if(displayValorActual.innerHTML !== ''){
+        valorActual = displayValorActual.innerHTML.substring(0, displayValorActual.innerHTML - 1)
     }
-    function filtradoNumero(e){
-        var soloEnteros
-    }
+    displayValorActual.innerHTML = valorActual
 
 }
 

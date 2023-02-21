@@ -84,6 +84,6 @@ button:focus{
 
 }
 
-.numero, .colum-2,.operador{
+.numero, .colum-2,.operador, .numeroEsp{
     margin: .2rem;
 }
