@@ -1,85 +1,84 @@
+// llamar
 const displayValorAnterior = document.getElementById('valorAnterior');
 const displayValorActual = document.getElementById('valorActual');
 const botonesNumeros = document.querySelectorAll('.numero');
-const botonesNumerRari = document.querySelector('.numero');
 const botonesOperadores = document.querySelectorAll('.operador');
+// llamado a  operaciones
+const sumando = document.querySelector('#suma')
+const restando = document.querySelector('#resta')
+const multiplicando = document.querySelector('#multiplicar')
+const dividiendo = document.querySelector('#dividir')
 
-
-// Valores
+// Guarda valores 
 valorActual = []
 valorAnterior = []
-valor1 = 0
-valor2 = 0
-
-function valoresCalc(operador,e){
-    valorAnterior = valorActual;
-    valorActual = [];
-    if(isNaN(valor2)){
-        // Esto lo coloque para que omita estos valores vacios o no ejecuta
-        displayValorActual.innerHTML = operador
-    }else if(valor2 == 0){
-        displayValorActual.innerHTML = ''
-    }
-    if(displayValorActual.innerHTML !== '' && displayValorAnterior.innerHTML !== ''){
-        valorActual = e
-        valorAnterior = []
-        valor2 = 0
-        displayValorActual.innerHTML = valorActual
-    }
-  
-    
-}
+valor1 = 
+valor2 = 
+valorTotal = 0;
+operador = ''
 
 
 function botones(){
     botonesNumeros.forEach(boton => {
         boton.addEventListener('click', () =>{
             valorActual = valorActual + boton.innerHTML;
-            displayValorActual.innerHTML = valorActual
-            valor1 = parseFloat(valorActual);
-            valor2 = parseFloat(valorAnterior);
+            displayValorActual.innerHTML = valorActual;
+            if(valor1 !== 0){
+                valorAnterior = valorAnterior + boton.innerHTML;
+                valor2 = parseFloat(valorAnterior)
+
+            }else if(valorTotal !== 0){
+                valorActual = valorActual + boton.innerHTML;
+                displayValorActual.innerHTML = valorActual;
+            }
         })
     })
 }
 
+botonesOperadores.forEach(operadores =>{
+    operadores.addEventListener('click', () =>{
+        if(operadores.innerHTML !== '='){
+            valor1 = parseFloat(valorActual);
+            valoresCalc()
+            displayValorAnterior.innerHTML = `${valor1}${operadores.innerHTML}${valorActual}`
+            displayValorActual.innerHTML = valorActual;
+            
+            // Guardo el valor de la operacion
+            operador = operadores.innerHTML;
+        }else{
+            displayValorAnterior.innerHTML = ''
+            if(valor1 !== 0 && valor2 !== 0){
+                valorTotal = operacionesMath(operador,valor1,valor2)
+                displayValorActual.innerHTML = valorTotal
+                valorActual = valorTotal
+                valor1 = valorTotal
 
-botonesOperadores.forEach(boton =>{
-    boton.addEventListener('click', () =>{
-
-        if(boton.innerHTML == '+'){
-            valoresCalc('+',sumar(valor1,valor2));
-
-        }else if(boton.innerHTML == '-'){
-            valoresCalc('-',restar(valor1,valor2))
-
-
-        }else if(boton.innerHTML == '*'){
-            valoresCalc('*',multiplicar(valor1,valor2))
-
-
-        }else if(boton.innerHTML == '%'){
-            valoresCalc('/',dividir(valor1,valor2))
-
-        }else if(boton.innerHTML == '='){
-            displayValorActual.innerHTML = 'A'
-            valorActual = []
-            valorAnterior = []
+            }if(valorTotal !== 0){
+                displayValorAnterior.innerHTML = ''
+                displayValorActual.innerHTML = valorTotal
+                valor1 = valorTotal;
+            }
         }
-        displayValorAnterior.innerHTML = valorAnterior;
     })
+  
 })
 
-// Funciones para borrar
+function valoresCalc(){
+    valorActual = []
+    valorAnterior=[]
+}
+// Borrar
 function formatearDisplay(){
     displayValorActual.innerHTML = '';
     displayValorAnterior.innerHTML = '';
 }
-
 function borrarTodo(){
     valorActual = []
     valorAnterior = []
-    valor1 = []
-    valor2 = []
+    valor1 = 0
+    valor2 = 0
+    valorTotal = 0;
+    operador = ''
     formatearDisplay();
 }
 function borrar(){
@@ -95,3 +94,4 @@ function borrar(){
 }
 
 botones()
+

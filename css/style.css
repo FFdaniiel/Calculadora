@@ -1,8 +1,7 @@
 :root{
-    --green-1 : #D7FBE8;
-    --green-2 : #9DF3C4;
-    --green-3 : #1FAB89;
-    --green-4 : #006f54;
+    --green-1 : #EEE9DA;
+    --green-3 : #93BFCF;
+    --green-4 : #6096B4;
     --display : #363636;
 }
 
@@ -12,12 +11,13 @@ html {
 }
 
 body{
-    background-color: var(--green-3);
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
 }
 
 button {
+    border-radius: 4rem;
     cursor: pointer;
     border: none;
     background-color: var(--green-3);
@@ -26,6 +26,8 @@ button:active{
     background-color: var(--green-4);
 }
 button:focus{
+    border: 1px solid var(--green-3);
+
     outline: none;
 }
 /* Fondo */
@@ -43,7 +45,7 @@ button:focus{
     grid-template-rows: 18rem repeat(5, 7.5rem) ;
     background-color: var(--green-4);
     padding: 1.3rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     box-shadow: 1.5rem 1rem 0 .5rem #00000033;
     color: var(--green-1);
     font-size: 2.5em;
@@ -61,10 +63,9 @@ button:focus{
     align-items: flex-end;
     background-color: var(--display);
     text-align: right;
-    border-radius: 1rem;
+    border-radius: 3rem;
     justify-content: space-between;
     word-break: break-all;
-    box-shadow: 0 0 .5rem .7rem #00000033;
 }
 
 .valorActual{
@@ -88,13 +89,57 @@ button:focus{
 
 .numero, .colum-2,.operador, .numeroEsp{
     margin: .2rem;
+    font-size: 1.5rem;
 }
 .hora{
-    position: absolute;
-    align-self: flex-start;
     text-align: start;
-    width: 150px;
+    width: 100%;
     height: 30px; 
-    padding: 5px 10px; 
+    padding: .4rem 1rem; 
     font-size: 1.5rem;
+}
+
+
+/* Burbujas */
+
+.burbujas{
+    border-radius: 50%;
+    background: #fff;
+    opacity: .3;
+    position: fixed;
+    bottom: 0;
+
+    animation: burbujas 3s linear infinite; 
+;}
+
+.burbuja:nth-child(1){
+
+    width: 8rem;
+    height: 8rem;
+    left: 5%;
+    animation-duration: 3s;
+
+}
+.burbuja:nth-child(2){
+
+    width: 10rem;
+    height: 10rem;
+    left: 35%;
+    animation-duration: 3s;
+
+}
+
+
+@keyframes burbujas {
+    0%{
+        bottom: 0;
+        opacity: 0;
+    }
+    50%{
+        opacity: .4 ;
+    }
+    100%{
+        bottom: 100vh;
+        opacity: 0;
+    }
 }
