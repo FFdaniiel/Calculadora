@@ -2,7 +2,7 @@
     --green-1 : #EEE9DA;
     --green-3 : #93BFCF;
     --green-4 : #6096B4;
-    --display : #363636;
+    --display : linear-gradient(to bottom, black 10%,#363636 100%);
 }
 
 /* Extras */
@@ -21,13 +21,15 @@ button {
     cursor: pointer;
     border: none;
     background-color: var(--green-3);
+    box-shadow: .3rem .4rem .3rem .2rem #00000033;
+
 }
 button:active{
+    margin: .8rem;
     background-color: var(--green-4);
 }
 button:focus{
     border: 1px solid var(--green-3);
-
     outline: none;
 }
 /* Fondo */
@@ -44,11 +46,10 @@ button:focus{
     grid-template-columns: repeat(4,  7.5rem);
     grid-template-rows: 18rem repeat(5, 7.5rem) ;
     background-color: var(--green-4);
-    padding: 1.3rem;
+    padding: 1.6rem;
     border-radius: 1rem;
     box-shadow: 1.5rem 1rem 0 .5rem #00000033;
     color: var(--green-1);
-    font-size: 2.5em;
 
 }
 
@@ -61,7 +62,7 @@ button:focus{
     margin: 1rem 1rem 2rem;
     flex-direction: column;
     align-items: flex-end;
-    background-color: var(--display);
+    background-image: var(--display);
     text-align: right;
     border-radius: 3rem;
     justify-content: space-between;
@@ -88,8 +89,8 @@ button:focus{
 }
 
 .numero, .colum-2,.operador, .numeroEsp{
-    margin: .2rem;
-    font-size: 1.5rem;
+    margin: .4rem;
+    font-size: 1.8rem;
 }
 .hora{
     text-align: start;
